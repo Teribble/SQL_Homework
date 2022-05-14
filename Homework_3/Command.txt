@@ -1,4 +1,6 @@
-﻿create table Departments(
+﻿https://github.com/Teribble/SQL_Homework/tree/master/Homework_3
+
+create table Departments(
 	Id int primary key not null identity(1,1),
 	Financing money not null check (Financing >= 0) default(0),
 	[Name] nvarchar(100) not null check ([Name] != N'') unique,
