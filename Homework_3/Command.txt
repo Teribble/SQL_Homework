@@ -1,0 +1,164 @@
+﻿create table Departments(
+	Id int primary key not null identity(1,1),
+	Financing money not null check (Financing >= 0) default(0),
+	[Name] nvarchar(100) not null check ([Name] != N'') unique,
+	)
+
+create table Faculties(
+	Id int not null primary key identity(1,1),
+	Dean nvarchar(100) not null check (Dean !=N'') unique,
+	[Name] nvarchar(100) not null check ([Name] != N'') unique,
+	)
+
+create table Groups(
+	id int primary key not null identity(1,1),
+	[Name] nvarchar(100) not null check([Name] != N'') unique,
+	Rating int not null check(Rating between 0 and 5),
+	[Year] int not null check([Year] between 1 and 5)
+	)
+
+create table Teachers(
+	Id int identity(1,1) not null primary key,
+	EmploymentDate date not null check(EmploymentDate >= '1990-01-01'),
+	IsAssistant bit not null default(0),
+	IsProfessor bit not null default(0),
+	[Name] nvarchar(max) not null check([Name] != N''),
+	Position nvarchar(max) not null check(Position != N''),
+	Premium money not null check(Premium >= 0) default(0),
+	Salary money not null check (Salary > 0),
+	Surname nvarchar(max) not null check(Surname !=N'')
+	)
+
+insert into Faculties values
+(N'Авиастроение',N'Зимовнов Олег Владимирович'),
+(N'Автоматизация, Мехатроника и Управление',N'Обухов Павел Серафимович'), 
+(N'Агропромышленный',N'Рудой Дмитрий Владимирович'),
+(N'Безопасность жизнедеятельности',N'Хлебунов Олег Анатольевич'),
+(N'Биоинженерия и Ветеринарная медицина',N'Ермаков Алексей Файлович'),
+(N'Дорожно-Транспортный',N'Топилин Иван Владимирович'),
+(N'Инженерно-Строительный',N'Явруян Хунгианос Степанович'),
+(N'Иновационный Бизнес и Менеджмент',N'Осадчая Наталья Алексеевна')
+
+insert into Departments values
+(N'15000',N'Теплоэнергетика и прикладная гидромеханика'),
+(N'25000',N'Техническая эксплуатация летательных аппаратов и наземного оборудования'),
+(N'10000',N'Физика'),
+(N'160000',N'Электротехника и электроника'),
+(N'75000',N'Инженерная и компьютерная графика'),
+(N'560000',N'Проектирование и производство сельскохозяйственной техники'),
+(N'45000',N'Безопасность жизнедеятельности и защита окружающей среды'),
+(N'89500',N'Производственная безопасность'),
+(N'123000',N'Биоинженерия'),
+(N'5000',N'Биология и общая патология'),
+(N'850000',N'Автомобильные дороги'),
+(N'95000',N'Организация перевозок и дорожного движения'),
+(N'7500',N'Водоснабжение и водоотведение'),
+(N'11400',N'Инженерная защита окружающей среды'),
+(N'25600',N'Бухгалтерский учет, анализ и аудит'),
+(N'89600',N'Менеджмент и бизнес технологии'),
+(N'256000',N'Физвоспитание'),
+(N'85600',N'Физическая культура и спортивно-оздоровительные технологии'),
+(N'48000',N'Физическое воспитание и спорт')
+
+insert into Teachers values
+('2015-03-01',1,0,N'Михаил',N'Техник',5000,15000,N'Павлушкин'),
+('2014-02-02',1,0,N'Палвик',N'Профессор',20000,30000,N'Морозов'),
+('2009-03-25',1,0,N'Ирина',N'Доцент',15000,15000,N'Тархунова'),
+('2005-04-12',1,0,N'Дарья',N'Педагог высшей категории',15000,15000,N'Орина'),
+('2016-05-29',1,0,N'Малик',N'Техник',15000,15000,N'Талкин'),
+('2001-01-01',1,0,N'Александр',N'Техник',15000,15000,N'Москольков'),
+('2018-05-01',0,0,N'Александр',N'Профессор',7000,15000,N'Андреев'),
+('2018-05-01',0,0,N'Александр',N'Профессор',9000,20000,N'Кортиков'),
+('2018-05-01',0,0,N'Анжела',N'Профессор',9000,20000,N'Валуева'),
+('2019-11-01',0,0,N'Зарина',N'Профессор',5000,20000,N'Ахтам-Мура'),
+('2005-04-12',0,0,N'Павел',N'Педагог высшей категории',52000,15000,N'Карпов'),
+('2016-05-29',0,0,N'Валентина',N'Доцент',5000,45000,N'Сердечкина'),
+('2001-01-01',0,0,N'Андраник',N'Доцент',35000,45000,N'Морко'),
+('2018-05-01',0,0,N'Анна',N'Доцент',45000,45000,N'Кувшинкина'),
+('2018-05-01',0,0,N'Евгений',N'Доцент',5000,45000,N'Марков'),
+('2018-05-01',0,0,N'Евгений',N'Педагог высшей категории',75000,45000,N'Газетный'),
+('2018-05-01',0,0,N'Виктор',N'Доцент',5000,45000,N'Героев'),
+('2018-05-01',0,0,N'Виктор',N'Доцент',45000,45000,N'Салкин'),
+('2005-04-12',0,0,N'Максим',N'Доцент',5000,45000,N'Письменный'),
+('2016-05-29',0,1,N'Алик',N'Педагог высшей категории',15000,15000,N'Тер-Григорьянс'),
+('2001-01-01',0,1,N'Алефтина',N'Доцент',5000,15000,N'Галкина'),
+('2018-05-01',0,1,N'Ангелина',N'Профессор',25000,30000,N'Губа'),
+('2018-05-01',0,1,N'Любовь',N'Доцент',5000,30000,N'Золотова'),
+('2018-05-01',0,1,N'Снежана',N'Доцент',5000,15000,N'Верховая')
+
+insert into Groups values
+(N'ВСО_01',2,5),
+(N'ВСО_02',4,4),
+(N'ВСО_03',1,2),
+(N'ВСО_04',3,3),
+(N'ВСО_05',5,1),
+(N'БРА_0146',1,1),
+(N'БРА_0236',3,2),
+(N'БРА_0326',5,4),
+(N'БРА_0416',2,3),
+(N'ЗАС_0182',4,5),
+(N'ЗАС_0792',4,5),
+(N'ЗАС_0192',2,2),
+(N'ПРОПО_12',3,3),
+(N'ПРОПО_11',1,1),
+(N'ПРОПО_08',5,3),
+(N'ПРОПО_07',4,1),
+(N'ПРОПО_04',4,2),
+(N'ДАР_07К',2,3),
+(N'ДАР_03Г',2,4),
+(N'ДАР_02С',2,4),
+(N'ПУ_1379_Ша',5,3),
+(N'ПУ_1179_Ша',1,2),
+(N'ПУ_1479_Ша',5,1),
+(N'ТАРО_9009',1,5),
+(N'ТАРО_9019',3,4),
+(N'ВИЗО_1466',3,3),
+(N'ВИЗО_1396',3,2),
+(N'ВИЗО_1286',3,1),
+(N'ГОРО_1',1,5),
+(N'ГОРО_2',2,3),
+(N'ГОРО_3',4,4),
+(N'ГОРО_4',4,1),
+(N'ГОРО_5',2,2),
+(N'ГОРО_6',5,2),
+(N'ГОРО_7',3,5),
+(N'ГОРО_8',1,4)
+
+1.	select * from Departments order by [Name] desc
+2.	select Groups.Name as [Group Name], Groups.Rating as [Group Rating] from Groups
+3.	select Teachers.Surname, (Teachers.Salary + Teachers.Premium) as [Salary + Premium] from Teachers
+4.	select N'Факультет ' + [Dean] + N' возглавляет ' + [Name] from Faculties
+5.	select (Teachers.Surname + ' ' + Teachers.Name) as [FullName], Teachers.IsProfessor, Teachers.Salary
+	from Teachers
+	where Teachers.IsProfessor = 1
+	and Teachers.Salary > 1050
+6.  select Departments.Name
+	from Departments
+	where Departments.Financing <=11000
+	or Departments.Financing >=25000
+7.	select Faculties.Dean from Faculties
+	where Faculties.Dean != N'Агропромышленный'
+8.	select (Teachers.Surname + ' ' + Teachers.Name) as [Teacher], Teachers.Position from Teachers
+	where Teachers.IsProfessor = 0
+9.	select (Teachers.Surname + ' ' + Teachers.Name) as [Teacher],
+	Teachers.Position,Teachers.Salary, Teachers.Premium
+	from Teachers
+	where Teachers.IsAssistant = 1
+	and Teachers.Premium between 5000 and 15000
+10. select Teachers.Surname, Teachers.Salary from Teachers
+	where Teachers.IsAssistant = 1
+11. select (Teachers.Surname + ' ' + Teachers.Name) as [Teacher FullName],Teachers.Position
+	from Teachers
+	where Teachers.EmploymentDate < '2006-01-01'
+12. select Departments.Name as [Name is Department]
+	from Departments
+	where Departments.Name < N'Физвоспитание'
+	order by [Name] asc
+13. select Teachers.Surname from Teachers
+	where (Teachers.Salary + Teachers.Premium) < 30000
+14. select Groups.Name from Groups
+	where Groups.Year = 5
+	and Groups.Rating between 2 and 4
+15. select Teachers.Surname from Teachers
+	where Teachers.Salary < 30000
+	and Teachers.Premium < 7000
